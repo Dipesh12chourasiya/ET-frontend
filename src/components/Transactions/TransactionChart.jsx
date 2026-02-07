@@ -29,7 +29,7 @@ const TransactionChart = () => {
       }
       return acc;
     },
-    { income: 0, expense: 0 }
+    { income: 0, expense: 0 },
   );
   //! Data structure for the chart
   const data = {
@@ -74,11 +74,11 @@ const TransactionChart = () => {
     cutout: "70%",
   };
   return (
-    <div className="my-8 p-6 bg-white rounded-lg shadow-xl border border-gray-200">
-      <h1 className="text-2xl font-bold text-center mb-6">
+    <div className="my-8 mx-2 sm:mx-4 lg:mx-6 p-6 sm:p-8 bg-white rounded-lg shadow-xl border border-gray-200">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6">
         Transaction Overview
       </h1>
-      <div style={{ height: "350px" }}>
+      <div className="h-64 sm:h-80">
         <Doughnut data={data} options={options} />
       </div>
     </div>
