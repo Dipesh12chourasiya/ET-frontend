@@ -42,7 +42,7 @@ export default function PrivateNavbar() {
               <div className="flex items-center gap-2">
                 <SiAuthy className="h-8 w-8 text-green-500" />
                 <span className="text-lg font-semibold text-gray-800 hidden sm:block">
-                  Expense Tracker
+                  AI Based Expense Tracker
                 </span>
               </div>
 
