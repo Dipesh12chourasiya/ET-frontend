@@ -34,12 +34,12 @@ export const getCategoryAnalyticsAPI = async () => {
   return response.data;
 };
 
-// ================= INCOME vs EXPENSE TREND =================
+// ================= EXPENSE TREND =================
 export const getIncomeExpenseTrendAPI = async () => {
   const token = getUserFromStorage();
 
   const response = await axios.get(
-    `${BASE_URL}/analytics/income-expense-trend`,
+    `${BASE_URL}/analytics/monthly-expense-trend`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

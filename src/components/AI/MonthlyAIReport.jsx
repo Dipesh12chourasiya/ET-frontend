@@ -1,22 +1,17 @@
 import React, { useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import html2pdf from "html2pdf.js";
+import { FaTimes } from "react-icons/fa";
 
-const MonthlyAIReport = ({ report, loading, error }) => {
+const MonthlyAIReport = ({ report, loading, error, onClose }) => {
   const reportRef = useRef(null);
 
   if (loading) {
-    return (
-      <p className="text-center mt-6">🤖 Generating AI report...</p>
-    );
+    return <p className="text-center mt-6">🤖 Generating AI report...</p>;
   }
 
   if (error) {
-    return (
-      <p className="text-center text-red-500 mt-6">
-        {error}
-      </p>
-    );
+    return <p className="text-center text-red-500 mt-6">{error}</p>;
   }
 
   const handleDownloadPDF = () => {
@@ -33,27 +28,37 @@ const MonthlyAIReport = ({ report, loading, error }) => {
     html2pdf().set(options).from(element).save();
   };
 
- return (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-3">
-    <div className="bg-white w-full max-w-3xl rounded-2xl shadow-xl overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b">
-        <h2 className="text-lg md:text-xl font-semibold">
-          📊 Monthly AI Financial Report
-        </h2>
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-3">
+      <div className="bg-white w-full max-w-3xl rounded-2xl shadow-xl overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b">
+          <h2 className="text-lg md:text-xl font-semibold">
+            Monthly AI Financial Report
+          </h2>
 
-        <button
-          onClick={handleDownloadPDF}
-          className="bg-black text-white text-sm px-4 py-2 rounded-lg hover:bg-gray-800 transition"
-        >
-          ⬇ Download PDF
-        </button>
-      </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleDownloadPDF}
+              className="bg-black text-white text-sm px-4 py-2 rounded-lg hover:bg-gray-800 transition"
+            >
+              ⬇ Download PDF
+            </button>
 
-      {/* Scrollable Content */}
-      <div
-        ref={reportRef}
-        className="
+            <button
+              onClick={onClose}
+              className="p-2 rounded-full text-gray-500 hover:text-red-500 hover:bg-red-50 transition"
+              aria-label="Close dialog"
+            >
+              <FaTimes size={18} />
+            </button>
+          </div>
+        </div>
+
+        {/* Scrollable Content */}
+        <div
+          ref={reportRef}
+          className="
           max-h-[70vh]
           overflow-y-auto
           px-6 py-5
@@ -61,13 +66,12 @@ const MonthlyAIReport = ({ report, loading, error }) => {
           max-w-none
           text-gray-800
         "
-      >
-        <ReactMarkdown>{report}</ReactMarkdown>
+        >
+          <ReactMarkdown>{report}</ReactMarkdown>
+        </div>
       </div>
     </div>
-  </div>
-);
-
-}
+  );
+};
 
 export default MonthlyAIReport;

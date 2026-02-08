@@ -108,7 +108,7 @@ const TransactionList = () => {
             Transactions List
           </h3>
           <ul className="list-disc pl-5 space-y-2">
-            {transactions?.map((transaction) => (
+            { transactions?.map((transaction) => (
               <li
                 key={transaction._id}
                 className="bg-white p-3 rounded-md shadow border border-gray-200 flex justify-between items-center"
