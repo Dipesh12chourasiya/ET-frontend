@@ -11,6 +11,8 @@ import TransactionList from "../Transactions/TransactionList";
 import MonthlyAIReport from "../AI/MonthlyAIReport";
 import { getMonthlyAIReportAPI } from "../../services/ai/aiReportService";
 import MonthlyExpenseTrend from "../Analytics/MonthlyExpenseTrend";
+import ReportFilterForm from "../Analytics/ReportFilterForm";
+
 
 const Dashboard = () => {
   const [showReport, setShowReport] = useState(false);
@@ -24,6 +26,8 @@ const Dashboard = () => {
     setShowReport(true);
     await mutateAsync();
   };
+
+
 
   return (
     <div className="space-y-6">
@@ -74,6 +78,9 @@ const Dashboard = () => {
           />
         </div>
       )}
+
+      {/* form for download report */}
+      <ReportFilterForm />
 
       <MonthlySummary />
       <CategoryAnalytics />

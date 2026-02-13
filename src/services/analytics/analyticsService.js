@@ -49,3 +49,22 @@ export const getIncomeExpenseTrendAPI = async () => {
 
   return response.data;
 };
+
+// ================= DOWNLOAD FILTERED PDF REPORT =================
+export const downloadFilteredReportAPI = async (filters) => {
+  const token = getUserFromStorage();
+
+  const queryParams = new URLSearchParams(filters).toString();
+
+  const response = await axios.get(
+    `${BASE_URL}/analytics/download-filtered-report?${queryParams}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      responseType: "blob",
+    }
+  );
+
+  return response.data;
+};
